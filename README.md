@@ -11,20 +11,19 @@
 ```sh
 $ git
 $ git clone {repo link}
-$ cd build-ami-packer
 ```
-2. Enter the AWS aws_access_key and aws_secret_access_key inside ami.json.
+2. Go into the working directory.
 3. Validate the Packer AMI template.
 ```sh
-$ ./packer validate ami.json
+$ packer validate ami.json
 ```
-4. Build the AMI.
+4. Build the AMI with required information. 
 
 ```sh
-$ ./packer build \
-    -var 'aws_access_key=REDACTED' \
-    -var 'aws_secret_key=REDACTED' \
-    -var 'aws_region=us-east-1' \
+$ packer build \
+    -var 'aws_access_key={your access key}' \
+    -var 'aws_secret_key={your secret key}' \
+    -var 'subnet_id={your subnet id}' \
     ami.json
 ```
 

@@ -7,17 +7,18 @@
   - git
 
 ### Configuration
-Make sure git is installed and then clone this repo
+1. Make sure git is installed and then clone this repo
 ```sh
 $ git
 $ git clone {repo link}
 $ cd build-ami-packer
 ```
-Validate the Packer AMI template.
+2. Enter the AWS aws_access_key and aws_secret_access_key inside ami.json.
+3. Validate the Packer AMI template.
 ```sh
 $ ./packer validate ami.json
 ```
-Build the AMI.
+4. Build the AMI.
 
 ```sh
 $ ./packer build \
@@ -26,4 +27,4 @@ $ ./packer build \
     -var 'aws_region=us-east-1' \
     ami.json
 ```
-Enter the AWS aws_access_key and aws_secret_access_key.
+

@@ -1,4 +1,4 @@
-# Amazon Machine Image (AMI) created with Packer
+# Creating Amazon Machine Image (AMI) with Packer
 
 ### Prerequisites
 

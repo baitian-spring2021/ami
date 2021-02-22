@@ -31,14 +31,8 @@
     ],
     "provisioners": [
         {
-            "type": "shell",
-            "environment_vars": [
-                "FOO=foo"
-            ],
-            "inline": [
-                "sudo apt-get update",
-                "sudo apt-get install tomcat8 -y"
-            ]
+          "type": "shell",
+          "script" : "provisioner_script.sh"
         }
     ]
 }

@@ -1,23 +1,24 @@
 # Creating Amazon Machine Image (AMI) with Packer
 
-### Prerequisites
-
-  - Packer
-  - active AWS account
-  - git
+### Included in the Provisioners
+  - JDK 11
+  - Tomcat 9
 
 ### Configuration
-1. Make sure git is installed and then clone this repo
+> Pre-requisites
+> * Packer
+> * Git
+> * Active AWS account
+
+1. Clone this repo
 ```sh
-$ git
 $ git clone {repo link}
 ```
-2. Go into the working directory.
-3. Validate the Packer AMI template.
+2. Validate the Packer AMI template.
 ```sh
 $ packer validate ami.json
 ```
-4. Build the AMI with required information. 
+3. Build the AMI by giving the required information in command line. 
 
 ```sh
 $ packer build \
@@ -26,4 +27,10 @@ $ packer build \
     -var 'subnet_id={your subnet id}' \
     ami.json
 ```
+or
+Build the AMI by filling in the vars.json file.
+```sh
+$ packer build -var-file=./vars.json ami.json
+```
+
 

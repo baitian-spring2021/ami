@@ -1,5 +1,6 @@
 {
     "aws_access_key": "",
     "aws_secret_key": "",
-    "subnet_id": ""
+    "subnet_id": "",
+    "prod_account_id": ""
 }

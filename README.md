@@ -18,13 +18,14 @@ $ git clone {repo link}
 ```sh
 $ packer validate ami.json
 ```
-3. Build the AMI by giving the required information in command line. 
+3. Build the AMI by giving the required information in command line. Make alterations on the variables as you need.
 
 ```sh
 $ packer build \
     -var 'aws_access_key={your access key}' \
     -var 'aws_secret_key={your secret key}' \
     -var 'subnet_id={your subnet id}' \
+    -var 'prod_account_id={your prod aws id}' \
     ami.json
 ```
 or

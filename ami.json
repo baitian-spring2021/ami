@@ -1,12 +1,12 @@
 {
     "variables": {
-        "aws_access_key": "{{env `AWS_ACCESS_KEY`}}",
-        "aws_secret_key": "{{env `AWS_SECRET_KEY`}}",
+        "aws_access_key": "${{ secrets.AWS_ACCESS_KEY }}",
+        "aws_secret_key": "${{ secrets.AWS_SECRET_KEY }}",
         "aws_region": "us-east-1",
-        "subnet_id": "{{env `SUBNET_ID`}}",
+        "subnet_id": "${{ secrets.SUBNET_ID }}",
         "source_ami": "ami-03d315ad33b9d49c4",
         "ssh_username": "ubuntu",
-        "prod_account_id": "{{env `PROD_ACCOUNT_ID`}}"
+        "prod_account_id": "${{ secrets.PROD_ACCOUNT_ID }}"
     },
     "builders": [
         {

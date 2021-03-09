@@ -1,12 +1,12 @@
 {
     "variables": {
-        "aws_access_key": "",
-        "aws_secret_key": "",
+        "aws_access_key": "{{env `AWS_ACCESS_KEY`}}",
+        "aws_secret_key": "{{env `AWS_SECRET_KEY`}}",
         "aws_region": "us-east-1",
-        "subnet_id": "",
+        "subnet_id": "{{env `SUBNET_ID`}}",
         "source_ami": "ami-03d315ad33b9d49c4",
         "ssh_username": "ubuntu",
-        "prod_account_id": ""
+        "prod_account_id": "{{env `PROD_ACCOUNT_ID`}}"
     },
     "builders": [
         {
@@ -35,6 +35,19 @@
         {
           "type": "shell",
           "script" : "provisioner_script.sh"
+        },
+        {
+          "type": "shell",
+          "inline" : [
+            "sudo apt-get install ruby-full -y",
+            "sudo apt-get install wget",
+            "cd /home/ubuntu",
+            "sudo wget https://aws-codedeploy-{{user `aws_region`}}.s3.{{user `aws_region`}}.amazonaws.com/latest/install",
+            "sudo chmod +x ./install",
+            "sudo ./install auto > /tmp/logfile",
+            "sudo service codedeploy-agent start"
+          ]
         }
+
     ]
 }

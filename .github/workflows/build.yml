@@ -1,0 +1,44 @@
+name: Validate and Build AMI Workflow
+
+on:
+  pull_request:
+    branches: [ main ]
+  
+  workflow_dispatch:
+
+jobs:
+  build_ami:
+
+    # runner
+    runs-on: ubuntu-latest
+
+    steps:
+    
+      # Install AWS CLI
+    - name: Install AWS CLI
+      run: | 
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        sudo ./aws/install
+
+      # checkout repository
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      
+      # validate ami template
+    - name: Validate AMI
+      env:
+        AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+        SUBNET_ID: ${{ secrets.SUBNET_ID }}
+        PROD_ACCOUNT_ID: ${{ secrets.PROD_ACCOUNT_ID }}
+      run: packer validate ami.json
+      
+      # build ami using packer
+    - name: Build AMI
+      env:
+        AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+        SUBNET_ID: ${{ secrets.SUBNET_ID }}
+        PROD_ACCOUNT_ID: ${{ secrets.PROD_ACCOUNT_ID }}
+      run: packer build ami.json

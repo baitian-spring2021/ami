@@ -1,5 +1,4 @@
-name: Validate and Build AMI Workflow
-
+name: Build AMI
 on:
   push:
     branches: [ main ]
@@ -17,15 +16,6 @@ jobs:
       # checkout repository
     - name: Checkout repository
       uses: actions/checkout@v2
-      
-      # validate ami template
-    - name: Validate AMI
-      env:
-        AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-        AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
-        SUBNET_ID: ${{ secrets.SUBNET_ID }}
-        PROD_ACCOUNT_ID: ${{ secrets.PROD_ACCOUNT_ID }}
-      run: packer validate ami.json
       
       # build ami using packer
     - name: Build AMI

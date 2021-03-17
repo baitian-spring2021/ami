@@ -1,4 +1,4 @@
-# Creating Amazon Machine Image (AMI) with Packer
+# Create Amazon Machine Image (AMI) with Packer
 
 ### Included in the Provisioners
   - JDK 11
